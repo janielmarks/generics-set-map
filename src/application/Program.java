@@ -1,29 +1,33 @@
 package application;
 
-import services.CalculationService;
-import services.PrintService;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
 
-import entities.Product;
+import entities.Circle;
+import entities.Retangle;
+import entities.Shape;
 
 public class Program {
 
     public static void main(String[] args) {
-        List<Integer> myInts = Arrays.asList(5, 2, 10);
-        printList(myInts);
+
+        List<Shape> myShapes = new ArrayList<>();
+        myShapes.add(new Retangle(3.0,2.0));
+        myShapes.add(new Circle(2.0));
+
+        List<Circle> myCircleList = new ArrayList<>();
+        myCircleList.add(new Circle(2.0));
+        myCircleList.add(new Circle(3.0));
+
+        System.out.println("Total area: " + totalArea(myCircleList));
     }
 
-    public static void printList(List<?> list) {
-        for (Object obj : list) {
-            System.out.println(obj);
+        public static double totalArea(List<? extends Shape> list) {
+            double sum = 0.0;
+            for (Shape s : list) {
+                sum += s.area();
+            } 
+            return sum;
+            
         }
     }
-}
